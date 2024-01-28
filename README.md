@@ -10,10 +10,13 @@
 -pnpm run dev
 -pnpm add @mui/material @emotion/react @emotion/styled
 -pnpm add @mui/icons-material
+-pnpm add axios
+
 -vite env de değişiklik olduğunda otomatik server ı yeniden başlatır.değişikliklerin yansıması için Manuel olarak durdurup başlatmaya gerek kalmaz
 
+-mui=>variant style, component html. birisi görüntü birisi gerçek versiyonu seo için h1 gibi.
 
--pnpm add axios
+
 
 
 

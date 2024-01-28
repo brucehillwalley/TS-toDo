@@ -30,6 +30,15 @@ const Home = () => {
     }
   };
 
+const addTodo=async (task:string)=>{
+    
+    try {
+        await axios.post(url,{task})
+    } catch (error) {
+        console.log(error);
+    }
+}
+
   useEffect(() => {
     getTodos();
   }, []);
