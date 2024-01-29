@@ -40,7 +40,8 @@ const Home = () => {
 //     }
 // }
 
-type AddFn=(text:string)=>Promise<void>
+// type AddFn=(text:string)=>Promise<void>
+//
 
 const addTodo:AddFn=async (task)=>{
     
