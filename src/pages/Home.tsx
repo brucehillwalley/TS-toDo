@@ -30,14 +30,30 @@ const Home = () => {
     }
   };
 
-const addTodo=async (task:string)=>{
+//? void bir fonksiyon type vermeye gerek yok
+// const addTodo=async (task:string)=>{
+    
+//     try {
+//         await axios.post(url,{task})
+//     } catch (error) {
+//         console.log(error);
+//     }
+// }
+
+type AddFn=(text:string)=>Promise<void>
+
+const addTodo:AddFn=async (task)=>{
     
     try {
-        await axios.post(url,{task})
+        await axios.post(url,{task:task,isDone:false})
     } catch (error) {
         console.log(error);
+    }finally{
+      getTodos()
     }
 }
+
+
 
   useEffect(() => {
     getTodos();
@@ -50,7 +66,7 @@ const addTodo=async (task:string)=>{
       </Typography>
       {/* //?variant style, component html. birisi görüntü birisi gerçek versiyonu seo için h1 gibi. */}
 
-      <AddTodoComp />
+      <AddTodoComp addTodo={addTodo}/>
 
       <TodoList />
     </Container>
