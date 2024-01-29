@@ -5,12 +5,13 @@ import AddTodoComp from "../components/AddTodoComp";
 import TodoList from "../components/TodoList";
 import axios from "axios";
 
-interface ITodoType {
-  id: string | number; //? id bilgisi string yada number olabilir. İki veri tipinide kabul edecek.
-  isDone: boolean;
-  task: string;
-  todo?: string; //! todo verisini opsiyonel bırakarak olsa da olur olmasa da olur demiş oluyoruz. Zorunlu olmayan fieldlar için kullanılabilir.
-}
+// interface ITodoType {
+//   id: string | number; //? id bilgisi string yada number olabilir. İki veri tipinide kabul edecek.
+//   isDone: boolean;
+//   task: string;
+//   todo?: string; //! todo verisini opsiyonel bırakarak olsa da olur olmasa da olur demiş oluyoruz. Zorunlu olmayan fieldlar için kullanılabilir.
+// }
+//? type.d.ts ye taşındı.
 
 const url: string = import.meta.env.VITE_BASE_URL;
 
@@ -47,6 +48,26 @@ const addTodo:AddFn=async (task)=>{
     
     try {
         await axios.post(url,{task:task,isDone:false})
+    } catch (error) {
+        console.log(error);
+    }finally{
+      getTodos()
+    }
+}
+const toggleTodo:ToggleFn=async (todo)=>{
+    
+    try {
+        await axios.put(url,{...todo,isDone:!todo.isDone})
+    } catch (error) {
+        console.log(error);
+    }finally{
+      getTodos()
+    }
+}
+const deleteTodo:DeleteFn=async (id)=>{
+    
+    try {
+        await axios.delete(`${url}/${id}`)
     } catch (error) {
         console.log(error);
     }finally{
