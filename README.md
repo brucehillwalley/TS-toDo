@@ -18,7 +18,7 @@
 
 - disabled={!task.trim()} bu buton özelliği ile input boş iken buton pasif halde olur. Böylece boş task girilmesi engellenmiş olur
 - global alanda type tanımlamanın performansa bir etkisi yoktur. TS dev aşaömasında olduğu için production a etkisi olmadığından dolayı
--
+- React.FC => React functinal component type olarak verilirse return ü olmak zorunda
 
 
 
