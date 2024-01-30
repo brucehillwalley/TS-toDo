@@ -1,4 +1,7 @@
 # React + TypeScript + Vite
+
+- [live](https://ts-todoapp.netlify.app/)
+
 - VITE NATIVE MODUL YAPISI KULLANIR index.html'de script type="module" src="/src/main.tsx" olarak eklenir.
 - index.jsx yerine main.tsx
 
