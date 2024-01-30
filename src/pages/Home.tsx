@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import AddTodoComp from "../components/AddTodoComp";
 import TodoList from "../components/TodoList";
 import axios from "axios";
+import { SweetAlertIcons, SweetPosition, notify } from "../helper/sweetalert";
 
 // interface ITodoType {
 //   id: string | number; //? id bilgisi string yada number olabilir. İki veri tipinide kabul edecek.
@@ -48,8 +49,11 @@ const addTodo:AddFn=async (task)=>{
     
     try {
         await axios.post(url,{task:task,isDone:false})
+        notify("Todo Created ",SweetAlertIcons.SUCCESS,SweetPosition.Center)
     } catch (error) {
         console.log(error);
+        notify("Todo not Created",SweetAlertIcons.ERROR,SweetPosition.BottomEnd)
+
     }finally{
       getTodos()
     }
@@ -57,7 +61,7 @@ const addTodo:AddFn=async (task)=>{
 const toggleTodo:ToggleFn=async (todo)=>{
     
     try {
-        await axios.put(url,{...todo,isDone:!todo.isDone})
+        await axios.put(`${url}/${todo.id}`,{...todo,isDone:!todo.isDone})
     } catch (error) {
         console.log(error);
     }finally{
@@ -90,7 +94,10 @@ const deleteTodo:DeleteFn=async (id)=>{
 
       <AddTodoComp addTodo={addTodo}/>
 
-      <TodoList />
+      <TodoList   
+              todos={todos}
+              toggleTodo={toggleTodo}
+              deleteTodo={deleteTodo} />
     </Container>
   );
 };

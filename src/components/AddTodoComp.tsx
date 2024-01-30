@@ -79,6 +79,7 @@ return (
     variant="outlined"
     value={task}
     onChange={(e) => setTask(e.target.value)}
+    inputProps={{maxLength:40}}
   />
   <Button
     variant="contained"
